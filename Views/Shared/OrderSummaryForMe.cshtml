@@ -1,0 +1,18 @@
+﻿@model Order
+
+@{ 
+    string cls = "table-active";
+    if (@Model.EndDate < DateTime.Today && @Model.Status != "Выполнена") { cls = "table-danger"; }
+    if (@Model.Status == "Выполнена") { cls = "table-success"; }    
+}
+
+    <tr class="@cls">
+        <td scope="row">@Model.Name</td>
+        <td>@Model.Priority</td>
+        <td>@Model.EndDate</td>
+        <td>@Model.RespUserFullName</td>
+        <td>@Model.Status</td>
+        <td>
+            <a class="btn btn-outline-primary" asp-action="UpdateMyOrder" asp-route-orderid="@Model.OrderId">Просмотр</a>
+        </td>
+    </tr>

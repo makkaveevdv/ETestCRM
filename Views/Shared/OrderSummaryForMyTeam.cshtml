@@ -1,0 +1,23 @@
+﻿@model Order
+
+@{ 
+    string cls = "table-active";
+    if (@Model.EndDate < DateTime.Today && @Model.Status != "Выполнена") { cls = "table-danger"; }
+    if (@Model.Status == "Выполнена") { cls = "table-success"; }    
+}
+
+    <tr class="@cls">
+        <td scope="row">@Model.Name</td>
+        <td>@Model.Priority</td>
+        <td>@Model.EndDate</td>
+        <td>@Model.RespUserFullName</td>
+        <td>@Model.Status</td>
+        <td>
+            <form asp-action="DeleteOrder" method="post">
+                <a class="btn btn-outline-primary" asp-action="EditOrder" asp-controller="MyTeamOrders" 
+                   asp-route-orderid="@Model.OrderId">Редактировать</a>
+                <input type="hidden" name="OrderId" value="@Model.OrderId" />
+                <button type="submit" class="btn btn-outline-danger">Удалить</button>
+            </form>
+        </td>
+    </tr>

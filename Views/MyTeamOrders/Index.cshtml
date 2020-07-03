@@ -1,0 +1,47 @@
+﻿@model OrderListViewModel
+
+<h3>Список задач для моей команды:</h3>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="justify-content: space-between">
+    <div sort-model="@Model.PagingInfo" page-action="Index" page-controller="MyTeamOrders" sort-classes-enabled="true"
+         sort-class="btn" sort-class-normal="btn-secondary"
+         sort-class-selected="btn-primary" 
+         page-url-respuser="@Model.PagingInfo.CurrentRespUser"
+         page-url-sortTime="@Model.PagingInfo.CurrentTime" 
+         class="btn-group m-1" role="group" aria-label="First group">
+    </div>
+
+    <div class="btn-group m-1" role="group" aria-label="Second group">
+        <a asp-action="CreateOrder" class="btn btn-outline-success">+Новая задача</a>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Заголовок</th>
+            <th scope="col">Приоритет</th>
+            <th scope="col">Дата окончания</th>
+            <th scope="col">Ответственный</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Orders != null)
+        {
+            int i = 0;
+            @foreach (var p in Model.Orders)
+            {
+                @Html.Partial("OrderSummaryForMyTeam", p); i++;
+            }
+            if ( i== 0) { <tr><td colspan="6" class="text-center">Вы не поставили для своих подчиненных ни одной задачи.</td></tr> }
+        }
+    </tbody>
+</table>
+
+<div page-model="@Model.PagingInfo" page-action="Index" page-controller="MyTeamOrders" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" 
+     page-url-respuser="@Model.PagingInfo.CurrentRespUser"
+     page-url-sortTime="@Model.PagingInfo.CurrentTime" 
+     class="btn-group m-1">
+</div>

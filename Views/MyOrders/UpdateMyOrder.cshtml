@@ -1,0 +1,41 @@
+﻿@model Order
+
+<div class="alert alert-secondary" role="alert"><h4>Просмотр задачи</h4></div>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="UpdateMyOrder" asp-controller="MyOrders" method="post">
+    <input type="hidden" asp-for="OrderId" />
+    <div class="form-group">
+        <label asp-for="Status">Статус задачи:</label>
+        <select asp-for="Status" class="custom-select">
+            <option value="К выполнению">К выполнению</option>
+            <option value="Выполняется">Выполняется</option>
+            <option value="Выполнена">Выполнена</option>
+            <option value="Отменена">Отменена</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="OrderId">Идентификатор:</label>
+        <input asp-for="OrderId" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name">Заголовок:</label>
+        <input asp-for="Name" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Описание:</label>
+        <textarea asp-for="Description" class="form-control" disabled></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate">Дата окончания:</label>
+        <input type="date" asp-for="EndDate" class="form-control" disabled />
+    </div>
+    <div class="form-group">
+        <label asp-for="Priority">Приоритет:</label>
+        <input asp-for="Priority" class="form-control" disabled />
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Обновить статус</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Назад</a>
+</form>
+
+

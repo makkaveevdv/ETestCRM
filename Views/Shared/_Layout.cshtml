@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="~/lib/bootstrap/css/bootstrap.min.css"
+          asp-href-exclude="~/lib/bootstrap/css/bootstrap-reboot.min.css" />
+
+    <title>ETestCRM</title>
+    <style>
+        .input-validation-error {
+            border-color: red;
+            background-color: #fee;
+        }
+    </style>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery/validation/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery/validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" asp-action="Index"
+       asp-controller="MyOrders">ETestCRM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" style="color: #fff; ">
+                    Система управления задачами
+                </li>
+            </ul>
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <form class="form-inline my-2 my-md-0">
+                    <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Выйти</a>
+                </form>
+            }
+        </div>
+    </nav>
+    <div class="row m-1 p-1">
+        <div id="respusers" class="col-3">
+            @await Component.InvokeAsync("NavigationMenu") 
+        </div>
+        <div class="col-9">
+            @if(TempData["message"] != null)
+            {
+                <div class="alert alert-success">@TempData["message"]</div>
+            }
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

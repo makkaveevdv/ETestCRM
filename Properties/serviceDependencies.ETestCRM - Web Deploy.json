@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/Microsoft.Sql/servers/etestcrm2db/databases/ETestCRM_Identitydb",
+      "type": "mssql.azure",
+      "connectionId": "Data/ETestCRMIdentity/ConnectionString",
+      "secretStore": null
+    },
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/Microsoft.Sql/servers/etestcrm2db/databases/ETestCRM_Ordersdb",
+      "type": "mssql.azure",
+      "connectionId": "Data/ETestCRMOrders/ConnectionString",
+      "secretStore": null
+    }
+  }
+}
